@@ -49,7 +49,7 @@ function ContentSection(props: ServiceProps) {
 
     return (
         <>
-        <h3 className="mb-4 row-span-1 text-2xl font-bold leading-none tracking-tight md:text-3xl lg:text-4xl">
+            <h3 className="mb-4 row-span-1 text-2xl font-bold leading-none tracking-tight md:text-3xl lg:text-4xl">
                 {title}
             </h3>
             <div className="row-span-3">

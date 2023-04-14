@@ -26,8 +26,8 @@ export default function Header() {
                 <Link scroll={false} href="./#services" className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
                     Services
                 </Link>
-                <Link scroll={false} href="./#testimonials" className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
-                    Testimonials
+                <Link scroll={false} href="./#reviews" className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
+                    Reviews
                 </Link>
                 <Link scroll={false} href="./#contact" className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white">
                     Contact

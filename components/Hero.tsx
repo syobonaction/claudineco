@@ -1,6 +1,6 @@
 export default function Hero() {
     return (
-        <div className="relative pb-48 text-left lg:bg-gradient-to-r lg:to-blue-900/80 lg:from-transparent lg:rounded-tr-lg">
+        <div className="relative pb-16 lg:pb-48 text-left lg:bg-gradient-to-r lg:to-blue-900/80 lg:from-transparent lg:rounded-tr-lg">
             <h1 className="mb-8 text-4xl font-bold text-blue-900 lg:text-white leading-none tracking-tight md:text-6xl lg:text-7xl">
                 Start Your Life in France
             </h1>
