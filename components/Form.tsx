@@ -5,11 +5,13 @@ export default function Form() {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
+    const [submitting, setSubmitting] = useState(false)
     const [submitted, setSubmitted] = useState(false)
     const [message, setMessage] = useState("")
     
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setSubmitting(true)
         grecaptcha.ready(() => {
             grecaptcha.execute(siteKey, { action: "submit" })
             .then(async (token) => {
@@ -83,7 +85,7 @@ export default function Form() {
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-name">
                                 Name
                             </label>
-                            <input name="name" onChange={handleInputChange} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white valid:bg-white invalid:border-red-500" id="grid-name" type="text" required placeholder="Jane"/>
+                            <input name="name" onChange={handleInputChange} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white valid:bg-white invalid:border-red-500" id="grid-name" type="text" required placeholder="Jane" disabled={submitting}/>
                         </div>
                     </div>
                     <div className="mb-6 col-span-1">
@@ -91,7 +93,7 @@ export default function Form() {
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-email">
                                 Email
                             </label>
-                            <input name="email" onChange={handleInputChange} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white valid:bg-white invalid:border-red-500" id="grid-email" type="email" required placeholder="jane@xyz.com"/>
+                            <input name="email" onChange={handleInputChange} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white valid:bg-white invalid:border-red-500" id="grid-email" type="email" required placeholder="jane@xyz.com" disabled={submitting}/>
                         </div>
                     </div>
                     <div className="mb-6 col-span-1">
@@ -99,7 +101,7 @@ export default function Form() {
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-contact">
                                 Contact Number
                             </label>
-                            <input name="phone" onChange={handleInputChange} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white valid:bg-white invalid:border-red-500" id="grid-contact" type="tel" required placeholder="555-555-5555"/>
+                            <input name="phone" onChange={handleInputChange} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white valid:bg-white invalid:border-red-500" id="grid-contact" type="tel" required placeholder="555-555-5555" disabled={submitting}/>
                         </div>
                     </div>
                     <div className="col-span-3">
@@ -107,7 +109,7 @@ export default function Form() {
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-message">
                                 Message
                             </label>
-                            <textarea name="message" onChange={handleMessageChange} className="h-48 appearance-none block w-full transition duration-300 ease-in-out bg-gray-200 text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white valid:bg-white invalid:border-red-500 resize-none" required id="grid-message"></textarea>
+                            <textarea name="message" onChange={handleMessageChange} className="h-48 appearance-none block w-full transition duration-300 ease-in-out bg-gray-200 text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white valid:bg-white invalid:border-red-500 resize-none" required id="grid-message" disabled={submitting}></textarea>
                         </div>
                     </div>
                     <div className="text-gray-300 text-xs col-span-3 mb-6 ">
