@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <>
         <ReCaptchaProvider reCaptchaKey={siteKey}>
             <Component {...pageProps} />
-        </ReCaptchaProvider>,
+        </ReCaptchaProvider>
       </>
     )
 }
