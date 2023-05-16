@@ -1,50 +1,44 @@
-import { useMemo } from 'react';
-import { GoogleMap, useLoadScript, MarkerF } from '@react-google-maps/api';
+import L from 'leaflet'
+import { MapContainer, Marker, TileLayer } from 'react-leaflet'
+
+import "leaflet/dist/leaflet.css"
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png"
+import markerIcon from "leaflet/dist/images/marker-icon.png"
+import markerShadow from "leaflet/dist/images/marker-shadow.png"
+
+// @ts-ignore
+delete L.Icon.Default.prototype._getIconUrl
+L.Icon.Default.mergeOptions({
+    iconUrl: markerIcon.src,
+    iconRetinaUrl: markerIcon2x.src,
+    shadowUrl: markerShadow.src
+})
 
 interface MapProps {
-    lat: number,
-    lng: number,
-    marker: boolean,
+    center?: number[]
 }
 
-export default function Map(props:MapProps) {
-    const { lat, lng, marker } = props
-
-    const libraries = useMemo(() => ['places'], [])
-    const mapCenter = useMemo(
-        () => ({ lat, lng }),
-        [lat, lng]
-    )
-    const mapOptions = useMemo<google.maps.MapOptions>(
-        () => ({
-            disableDefaultUI: true,
-            clickableIcons: false,
-            scrollwheel: true,
-        }),
-        []
-    )
-
-    const { isLoaded } = useLoadScript({
-        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY as string,
-        libraries: libraries as any,
-    })
-    
-    if (!isLoaded) {
-        return <p>Loading...</p>
-    }
-
+const Map: React.FC<MapProps> = ({ 
+    center
+} ) => {
     return (
-        <div className="m-auto overflow-hidden rounded-lg">
-            <GoogleMap
-                options={mapOptions}
-                zoom={16}
-                center={mapCenter}
-                mapTypeId={google.maps.MapTypeId.ROADMAP}
-                mapContainerStyle={{ width: '400px', height: '400px' }}
-                onLoad={() => console.log('Map Component Loaded...')}
+        <MapContainer
+            center={center as L.LatLngExpression || [51, -0.09]}
+            zoom={15}
+            scrollWheelZoom={false}
+            className='h-[35vh] rounded-lg'
+        >
+            <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            {marker && <MarkerF position={mapCenter} onLoad={() => console.log('Marker Loaded')} />}
-        </div>
-        
+            {center && (
+                <Marker 
+                    position={center as L.LatLngExpression}
+                />
+            )}
+        </MapContainer>
     )
 }
+
+export default Map

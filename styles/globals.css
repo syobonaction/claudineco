@@ -23,3 +23,10 @@ body {
 .grecaptcha-badge {
   display: none !important;
 }
+
+.leaflet-bottom,
+.leflet-control,
+.leaflet-pane,
+.leaflet-top {
+  z-index: 0 !important;
+}
